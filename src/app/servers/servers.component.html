@@ -12,10 +12,11 @@ class="form-control mb-2"
 <hr>
 <!-- <p>{{ allowNewServer }}</p> -->
 <!-- <p [innerText]="allowNewServer"></p> -->
+<p *ngIf="serverCreated">
 <label for="">Server Creation status :</label>
-<p> {{ serverCreationStatus }}</p>
+<a> {{ serverCreationStatus }}</a>
+</p>
 
-<hr>
 <!-- <app-server></app-server>
 <hr>
 <app-server></app-server> -->

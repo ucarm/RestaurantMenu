@@ -3,9 +3,7 @@
     class="form-control mb-2"
     (input)= "onUpdateServerName($event)"> -->
 
-<input type="text" 
-class="form-control mb-2"
-[(ngModel)]="serverName">    
+<input type="text" class="form-control mb-2" [(ngModel)]="serverName">
 
 <p>{{ serverName }}</p>
 <button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreateServer()">Add a Server</button>
@@ -13,23 +11,31 @@ class="form-control mb-2"
 <!-- <p>{{ allowNewServer }}</p> -->
 <!-- <p [innerText]="allowNewServer"></p> -->
 <p *ngIf="serverCreated">
-<label for="">Server Creation status :</label>
-<a> {{ serverCreationStatus }}</a>
+    <label for="">Server Creation status :</label>
+    <a> {{ serverCreationStatus }}</a>
 </p>
 
-<!-- <app-server></app-server>
-<hr>
-<app-server></app-server> -->
+<app-server *ngFor="let server of servers"></app-server>
+<!-- <hr> -->
+<!-- <app-server></app-server> -->
 
-<label for="">Username:</label> 
-<input type="text"
-class="form-control mb-2 mt-2"
-[(ngModel)]="userName">
+<label for="">Username:</label>
+<input type="text" class="form-control mb-2 mt-2" [(ngModel)]="userName">
 
 <p>{{ userName }}</p>
 
-<button class="btn btn-primary"
-[disabled]="userName.length==0"
-(click)="resetUsernameField()"
->
-Reset username</button>
+<button class="btn btn-primary" [disabled]="userName.length==0" (click)="resetUsernameField()">
+    Reset username</button>
+<br>
+<button class="btn btn-primary mt-3" (click)="showAMessage()"> {{ displayDetails === true? 'Hide': 'Display' }}
+    details</button>
+<p class="mt-2 mb-2 p-3" *ngIf="displayDetails" [ngStyle]="{'background-color': moreThan4() ? 'blue' : 'green' }"
+    [ngClass]="{'text-white' : moreThan4() }">Congrats you invented the hidden
+    "wheel."
+    <br>{{ displayDetailsClicks[displayDetailsClicks.length-1]['value'] +" And "+ displayDetailsClicks[displayDetailsClicks.length-1]['DateTime'] }}
+</p>
+<div class="mt-2 mb-2">
+    <div class="p-1" *ngFor="let loggedValue of displayDetailsClicks"
+        [ngStyle]="{'background-color': loggedValue['value']>4? 'blue' : 'green' }" [ngClass]="{'text-white' : moreThan4() }">
+        {{ loggedValue['value'] +"   "+ loggedValue['DateTime']  }}</div>
+</div>

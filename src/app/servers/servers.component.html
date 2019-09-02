@@ -35,7 +35,10 @@
     <br>{{ displayDetailsClicks[displayDetailsClicks.length-1]['value'] +" And "+ displayDetailsClicks[displayDetailsClicks.length-1]['DateTime'] }}
 </p>
 <div class="mt-2 mb-2">
-    <div class="p-1" *ngFor="let loggedValue of displayDetailsClicks"
+    <!-- <div class="p-1" *ngFor="let loggedValue of displayDetailsClicks"
         [ngStyle]="{'background-color': loggedValue['value']>4? 'blue' : 'green' }" [ngClass]="{'text-white' : moreThan4() }">
-        {{ loggedValue['value'] +"   "+ loggedValue['DateTime']  }}</div>
+        {{ loggedValue['value'] +"   "+ loggedValue['DateTime']  }}</div> -->
+    <div class="p-1" *ngFor="let loggedValue of displayDetailsClicks, let i =index"
+    [ngStyle]="{'background-color': i>3? 'blue' : 'green' }" [ngClass]="{'text-white' : moreThan4() }">
+    {{ loggedValue['value'] +"   "+ loggedValue['DateTime']  }}</div>
 </div>
